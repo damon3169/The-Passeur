@@ -2,51 +2,113 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipControl : MonoBehaviour {
+public class ShipControl : MonoBehaviour
+{
 
-	float speed = 30f;
+	float speed = 40f;
 	float vectircalSpeed = 0f;
-	float minusVectircalSpeed =2f;
+	float minusVectircalSpeed = 2f;
 	GameObject playerSpotLight;
 	GameObject playerPointLight;
-	Rigidbody2D rigidbody;
+	private bool isGameOver = false;
+	private int slaves = 3;
+	private bool isCrashing = false;
+	private float crashTimer;
+	[SerializeField]
+	private float crashDuration;
 
 	// Use this for initialization
-	void Start () {
-		rigidbody = GetComponent<Rigidbody2D>();
+	void Start()
+	{
 		playerSpotLight = GameObject.Find("playerSpotLight");
 		playerPointLight = GameObject.Find("playerPointLight");
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-		transform.Translate(new Vector3(0, 1, 0) * vectircalSpeed * Time.deltaTime);
-		if (Input.GetKey("w") && vectircalSpeed <= 5)
+	void Update()
+	{
+		transform.Translate(new Vector3(1, 0, 0) * vectircalSpeed * Time.deltaTime);
+		if (isCrashing == true)
 		{
-			vectircalSpeed += 0.05f;
+			Debug.Log("test");
+
+			if (Time.time - crashTimer < crashDuration)
+			{
+				vectircalSpeed = -2;
+			}
+			else
+			{
+				isCrashing = false;
+				vectircalSpeed = 0;
+				speed = 40f;
+			}
+		}
+		else
+		{
+			if (Input.GetKey("w") && vectircalSpeed <= 7)
+			{
+				vectircalSpeed += 0.05f;
+			}
+
+			if (Input.GetKey("s") && vectircalSpeed >= 0.05f)
+			{
+				vectircalSpeed -= 0.025f;
+			}
+
+			if (Input.GetKey("a"))
+			{
+				transform.Rotate(0, 0, Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+			}
+
+			if (Input.GetKey("d"))
+			{
+				transform.Rotate(0, 0, Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+			}
+			if (Input.GetKeyDown("e"))
+			{
+				playerPointLight.GetComponent<lightControl>().onOff();
+			}
+			if (Input.GetMouseButtonDown(1))
+			{
+				playerSpotLight.GetComponent<lightControl>().onOff();
+			}
 		}
 
-		if (Input.GetKey("s") && vectircalSpeed >= 0.05f)
+		if (slaves == 0)
 		{
-			vectircalSpeed -= 0.05f;
+			isGameOver = true;
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+
+
+		if (other.tag == "obstacle" && this.tag == "Player")
+		{
+			Debug.Log("entered");
+
+			looseOneSlave();
+			crashTimer = Time.time;
+			vectircalSpeed = 0;
+			speed = 0;
+			isCrashing = true;
 		}
 
-		if (Input.GetKey("a"))
+		if (other.tag == "enemy")
 		{
-			transform.Rotate(0, 0, Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+			Debug.Log(other.name);
+			isGameOver = true;
 		}
+	}
 
-		if (Input.GetKey("d"))
-		{
-			transform.Rotate(0, 0, Input.GetAxis("Horizontal") * speed * Time.deltaTime);
-		}
-		if (Input.GetKeyDown("e"))
-		{
-			playerPointLight.GetComponent<lightControl>().onOff();
-		}
-		if (Input.GetMouseButtonDown(1))
-		{
-			playerSpotLight.GetComponent<lightControl>().onOff();
-		}
+	private void looseOneSlave()
+	{
+		slaves -= 1;
+	}
+
+	public bool isItOver()
+	{
+		return isGameOver;
 	}
 }

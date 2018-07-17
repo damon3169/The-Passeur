@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4862856597072238}
   - component: {fileID: 108352604820895722}
   - component: {fileID: 114800073553151946}
+  - component: {fileID: 61660557530398634}
   m_Layer: 0
   m_Name: playerSpotLight
-  m_TagString: Untagged
+  m_TagString: playerLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +54,7 @@ Transform:
   m_GameObject: {fileID: 1907890059913336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.02, y: 0, z: -0.07}
-  m_LocalScale: {x: 1, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4862856597072238}
   m_Father: {fileID: 0}
@@ -67,11 +68,36 @@ Transform:
   m_GameObject: {fileID: 1034788063915558}
   m_LocalRotation: {x: -0.48659012, y: 0.48659012, z: -0.5130595, w: 0.5130595}
   m_LocalPosition: {x: -0.9, y: 0, z: -0.06}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4458516640559200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 86.966, z: -90.00001}
+--- !u!61 &61660557530398634
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034788063915558}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 204.6}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 400.1}
+  m_EdgeRadius: 0
 --- !u!108 &108352604820895722
 Light:
   m_ObjectHideFlags: 1
@@ -82,8 +108,8 @@ Light:
   serializedVersion: 8
   m_Type: 0
   m_Color: {r: 1, g: 0.17934129, b: 0, a: 1}
-  m_Intensity: 58.8
-  m_Range: 1113.11
+  m_Intensity: 55
+  m_Range: 150
   m_SpotAngle: 10
   m_CookieSize: 10
   m_Shadows:
@@ -97,7 +123,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
