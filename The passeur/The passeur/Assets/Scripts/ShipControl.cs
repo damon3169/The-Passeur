@@ -86,7 +86,6 @@ public class ShipControl : MonoBehaviour
 
 		if (other.tag == "obstacle" && this.tag == "Player")
 		{
-			Debug.Log("entered");
 
 			looseOneSlave();
 			crashTimer = Time.time;
@@ -97,7 +96,6 @@ public class ShipControl : MonoBehaviour
 
 		if (other.tag == "enemy")
 		{
-			Debug.Log(other.name);
 			isGameOver = true;
 		}
 	}

@@ -20,15 +20,15 @@ public class enemyController : MonoBehaviour {
 
 	public virtual void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.tag == "playerLight")
+		if (other.tag == "playerLight" || other.tag == "Player")
 		{
-			collidePosition= this.transform.position;
+			collidePosition = this.transform.position;
 		}
 	}
 
 	public virtual void OnTriggerStay2D(Collider2D other)
 	{
-		if (other.tag == "playerLight")
+		if (other.tag == "playerLight" || other.tag == "Player")
 		{
 			gameManager.isAlarm = true;
 		}
