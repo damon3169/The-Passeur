@@ -35,7 +35,6 @@ public class WaterReflectableScript : MonoBehaviour
 
     spriteRenderer = reflectGo.AddComponent<SpriteRenderer>();
 		reflectGo.GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Sprites/spriteDiffuseDARK"); ;
-		Debug.Log(reflectGo.GetComponent<SpriteRenderer>().material);
 	spriteRenderer.sortingLayerName = spriteLayer;
     spriteRenderer.sortingOrder = spriteLayerOrder;
     
