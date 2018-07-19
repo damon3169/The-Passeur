@@ -30,8 +30,6 @@ public class ShipControl : MonoBehaviour
 		transform.Translate(new Vector3(1, 0, 0) * vectircalSpeed * Time.deltaTime);
 		if (isCrashing == true)
 		{
-			Debug.Log("test");
-
 			if (Time.time - crashTimer < crashDuration)
 			{
 				vectircalSpeed = -2;

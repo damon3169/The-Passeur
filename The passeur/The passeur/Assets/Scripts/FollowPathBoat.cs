@@ -27,13 +27,11 @@ public class FollowPathBoat	 : MonoBehaviour {
 			}
 			else
 			{
-				Debug.Log("test");
 				percentage = 0.0f;
 				currentTarget = bCurve.GetPointAt(percentage) - new Vector3(0, 0, -1.5f);
 			}
 		}
-
-			Vector3 dirBoat = currentTarget - transform.position;
+		Vector3 dirBoat = currentTarget - transform.position;
 			float angleBoat = Mathf.Atan2(dirBoat.y, dirBoat.x) * Mathf.Rad2Deg;
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.AngleAxis(angleBoat, Vector3.forward), Time.deltaTime * 5f);
 			//transform.rotation = Quaternion.Euler(0f, 0f, angleBoat);

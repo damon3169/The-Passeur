@@ -20,8 +20,8 @@ TagManager:
   - Obstacle
   - Light
   - Enemy
-  - 
-  - 
+  - 3dObstacle
+  - Camera
   - 
   - 
   - 
